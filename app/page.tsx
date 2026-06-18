@@ -1,65 +1,937 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useEffect, useRef } from "react";
+import Link from "next/link";
+import { motion, useInView } from "framer-motion";
+import {
+  ArrowRight,
+  Globe,
+  Code2,
+  Brain,
+  Shield,
+  Banknote,
+  Users,
+  CheckCircle,
+  Star,
+  ChevronRight,
+  Linkedin,
+  Twitter,
+  Facebook,
+  Youtube,
+  Zap,
+  TrendingUp,
+  Award,
+  Instagram,
+} from "lucide-react";
+import { services } from "@/lib/services-data";
+import { caseStudies } from "@/lib/case-studies-data";
+import { testimonials } from "@/lib/testimonials-data";
+
+const iconMap: Record<string, React.ElementType> = {
+  Globe,
+  Code2,
+  Brain,
+  Shield,
+  Banknote,
+  Users,
+};
+
+function AnimatedCounter({
+  value,
+  suffix = "",
+  prefix = "",
+}: {
+  value: number;
+  suffix?: string;
+  prefix?: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!inView || !ref.current) return;
+    let start = 0;
+    const duration = 1800;
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      if (ref.current) {
+        ref.current.textContent = prefix + Math.floor(ease * value) + suffix;
+      }
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [inView, value, suffix, prefix]);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <span ref={ref}>
+      {prefix}0{suffix}
+    </span>
+  );
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+};
+
+const stagger = {
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const displayFont = { fontFamily: "var(--font-display, 'Plus Jakarta Sans', sans-serif)" };
+
+export default function HomePage() {
+  const featuredServices = services.slice(0, 6);
+  const featuredCases = caseStudies.slice(0, 3);
+
+  return (
+    <div className="overflow-hidden bg-white text-white">
+
+      {/* ─── HERO ─────────────────────────────────────────────────────────── */}
+      <section
+        className="relative min-h-[92vh] flex items-center overflow-hidden"
+        style={{ backgroundColor: "#0B1120" }}
+      >
+        {/* Dot grid */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: "radial-gradient(circle, rgba(232,93,4,0.16) 1.5px, transparent 1.5px)",
+            backgroundSize: "32px 32px",
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+
+        {/* Ambient orbs */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+          {/* Large orange right-side orb */}
+          <div
+            className="absolute -right-40 top-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[130px] opacity-18"
+            style={{ background: "radial-gradient(circle, #E85D04 0%, #FF802B 40%, transparent 70%)" }}
+          />
+          {/* Smaller left orb */}
+          <div
+            className="absolute -left-20 bottom-0 w-[450px] h-[450px] rounded-full blur-[110px] opacity-10"
+            style={{ background: "radial-gradient(circle, #FF802B 0%, transparent 70%)" }}
+          />
+          {/* Subtle ring decorators */}
+          <div className="absolute right-20 top-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full border border-[#E85D04]/10 animate-spin-slow" style={{ animationDuration: "60s" }} />
+          <div className="absolute right-36 top-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full border border-[#E85D04]/07" />
+          {/* Floating dots */}
+          <div className="absolute top-24 left-1/3 w-3 h-3 rounded-full bg-[#E85D04] opacity-50 animate-float" />
+          <div className="absolute bottom-32 left-1/4 w-2 h-2 rounded-full bg-[#FF802B] opacity-40 animate-float-slow" />
+          <div className="absolute top-1/3 right-1/3 w-2 h-2 rounded-full bg-[#E85D04] opacity-60 animate-float" style={{ animationDelay: "2s" }} />
+          <div className="absolute bottom-1/3 right-1/4 w-1.5 h-1.5 rounded-full bg-[#FF9449] opacity-45 animate-float-slow" style={{ animationDelay: "3s" }} />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-28 relative z-10 text-center">
+          <div className="flex flex-col items-center">
+
+            {/* Centered Text Column */}
+            <motion.div initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center">
+
+              {/* Eyebrow */}
+              <motion.div variants={fadeUp} className="mb-6">
+                <span className="eyebrow-tag eyebrow-tag-dark">
+                  <span className="dot" />
+                  B2B Technology Partner · Hyderabad
+                </span>
+              </motion.div>
+
+              {/* Stars rating */}
+              <motion.div variants={fadeUp} className="flex items-center justify-center gap-3 mb-6">
+                <div className="flex items-center gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-[#E85D04] text-[#E85D04]" />
+                  ))}
+                </div>
+                <div className="h-4 w-px bg-white/20" />
+                <span className="text-xs text-white/50 tracking-widest uppercase">Trusted by 40+ Enterprises</span>
+              </motion.div>
+
+              {/* Headline */}
+              <motion.h1
+                variants={fadeUp}
+                className="text-5xl lg:text-6xl xl:text-[4.5rem] font-black text-white leading-[1.04] tracking-tight mb-6 text-center"
+                style={displayFont}
+              >
+                We Are a Technology<br />
+                <span className="gradient-text">Solutions Partner</span>
+              </motion.h1>
+
+              {/* Subheadline */}
+              <motion.p variants={fadeUp} className="text-lg text-white/55 leading-relaxed max-w-2xl mb-10 text-center" style={{ lineHeight: "1.75" }}>
+                Next-generation IT services from Hyderabad — offshore engineering,
+                AI/ML integration, Identity security (IAM), and payroll operations
+                for US, UK, and India markets.
+              </motion.p>
+
+              {/* CTAs */}
+              <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4 mb-12">
+                <Link href="/services" className="glow-btn">
+                  Explore Services <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link href="/case-studies" className="glow-btn glow-btn-ghost">
+                  View Case Studies
+                </Link>
+              </motion.div>
+
+              {/* Trust signals */}
+              <motion.div variants={fadeUp} className="flex items-center justify-center gap-6 flex-wrap">
+                {[
+                  { icon: Award, label: "Accredited Firm" },
+                  { icon: Globe, label: "3 Global Markets" },
+                  { icon: Zap, label: "AI-Ready Stack" },
+                ].map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-[#E85D04]/15 border border-[#E85D04]/25 flex items-center justify-center">
+                      <Icon className="w-3.5 h-3.5 text-[#E85D04]" />
+                    </div>
+                    <span className="text-xs text-white/45 font-semibold">{label}</span>
+                  </div>
+                ))}
+                <div className="h-4 w-px bg-white/15 hidden sm:block" />
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] text-white/25 uppercase tracking-widest">Follow us</span>
+                  {[
+                    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/nexeratech-solutions/" },
+                    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/nexeratechsolutions/" },
+                    { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/NexeraTechSolutions" },
+                  ].map(({ icon: Icon, label, href }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="text-white/30 hover:text-[#E85D04] transition-colors duration-200"
+                    >
+                      <Icon className="w-4 h-4" />
+                    </a>
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
-      </main>
+
+        {/* Slide indicators */}
+        <div className="absolute bottom-10 right-8 flex items-center gap-3">
+          {[1, 2, 3].map((n) => (
+            <button
+              key={n}
+              className={`transition-all duration-200 ${
+                n === 1
+                  ? "w-8 h-8 rounded-full bg-[#E85D04] text-white text-xs font-bold flex items-center justify-center shadow-[0_4px_12px_rgba(232,93,4,0.40)]"
+                  : "w-2 h-2 rounded-full bg-white/20"
+              }`}
+            >
+              {n === 1 ? "01" : ""}
+            </button>
+          ))}
+        </div>
+
+        {/* Bottom gradient fade */}
+        <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none" style={{ background: "linear-gradient(to top, rgba(255,255,255,0.03), transparent)" }} />
+      </section>
+
+      {/* ─── STATS BAR ──────────────────────────────────────────── */}
+      <section
+        className="relative overflow-hidden border-b border-gray-100/80"
+        style={{
+          backgroundColor: "#0A1628",
+        }}
+      >
+        {/* subtle dot grid */}
+        <div aria-hidden className="pointer-events-none absolute inset-0" style={{ backgroundImage: "radial-gradient(circle, rgba(232,93,4,0.14) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+        {/* Orange glow center */}
+        <div aria-hidden className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[180px] blur-[80px]" style={{ background: "rgba(232,93,4,0.10)" }} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 divide-x divide-white/[0.06]">
+            {[
+              { value: 40, suffix: "+", label: "Enterprise Clients", sub: "Across US, UK & India", icon: "🌐" },
+              { value: 95, suffix: "%", label: "Client Retention", sub: "Long-term partnerships", icon: "🤝" },
+              { value: 25, suffix: "+", label: "Tech Professionals", sub: "Senior-level engineers", icon: "👨‍💻" },
+              { value: 12, suffix: "", label: "Service Lines", sub: "Full-spectrum delivery", icon: "⚡" },
+            ].map((stat, i) => {
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="group flex flex-col items-center justify-center py-10 px-4 text-center relative overflow-hidden"
+                >
+                  <span className="text-2xl mb-3 block">{stat.icon}</span>
+                  <p className="text-4xl lg:text-5xl font-black text-white mb-1" style={displayFont}>
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                  </p>
+                  <p className="text-sm font-bold text-[#E85D04] mb-1">{stat.label}</p>
+                  <p className="text-[11px] text-white/30">{stat.sub}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── WHY CHOOSE US ───────────────────────────────────────────────── */}
+      <section
+        className="relative section-py overflow-hidden"
+        style={{
+          backgroundColor: "#ffffff",
+          backgroundImage: "radial-gradient(circle, rgba(232,93,4,0.06) 1.5px, transparent 1.5px)",
+          backgroundSize: "28px 28px",
+        }}
+      >
+        {/* Top glow */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[250px] blur-[90px]"
+          style={{ background: "rgba(232,93,4,0.035)" }}
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Left Column — Composite Cards */}
+            <div className="relative">
+              <div className="grid grid-cols-2 gap-4">
+                {/* Tall block */}
+                <div className="h-[380px] rounded-3xl bg-gradient-to-br from-[#0A1628] via-[#0F1E35] to-[#132238] border border-[#E85D04]/18 p-7 flex flex-col justify-between shadow-[0_24px_48px_rgba(10,22,40,0.25)] row-span-2 relative overflow-hidden group animate-float-slow">
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 opacity-08"
+                    style={{ backgroundImage: "radial-gradient(circle, rgba(232,93,4,0.28) 1px, transparent 1px)", backgroundSize: "20px 20px" }}
+                  />
+                  {/* Gradient border glow top */}
+                  <div className="absolute inset-x-0 top-0 h-[2px]" style={{ background: "linear-gradient(90deg, transparent, rgba(232,93,4,0.7), transparent)", opacity: 0, transition: "opacity 0.3s" }} />
+                  <span className="absolute inset-x-0 top-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(90deg, transparent, #E85D04, transparent)" }} />
+                  <div className="relative z-10">
+                    <div className="w-12 h-12 rounded-2xl bg-[#E85D04]/15 border border-[#E85D04]/25 flex items-center justify-center text-white mb-5 group-hover:bg-[#E85D04]/25 transition-colors">
+                      <span className="text-xl">💼</span>
+                    </div>
+                    <h4 className="text-white font-bold text-lg leading-tight mb-3" style={displayFont}>Offshore IT Delivery</h4>
+                    <p className="text-sm text-white/45 leading-relaxed">Scalable engineering support out of our Hyderabad delivery center. Aligned to US, UK & India time zones.</p>
+                  </div>
+                  {/* Bottom badge */}
+                  <div className="relative z-10 flex items-center gap-2 p-3 rounded-xl" style={{ background: "rgba(232,93,4,0.10)", border: "1px solid rgba(232,93,4,0.20)" }}>
+                    <div className="w-2 h-2 rounded-full bg-[#E85D04] animate-flicker" />
+                    <span className="text-[10px] text-[#E85D04] font-bold uppercase tracking-wider">25+ Active Engineers</span>
+                  </div>
+                </div>
+
+                {/* AI block */}
+                <div className="h-[178px] rounded-3xl bg-[#FFF4EC] border border-[#E85D04]/18 p-6 flex flex-col justify-between shadow-sm relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+                  <span className="absolute inset-x-0 top-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(90deg, transparent, #E85D04, transparent)" }} />
+                  <div className="w-10 h-10 rounded-xl bg-[#E85D04]/12 border border-[#E85D04]/20 flex items-center justify-center">
+                    <span className="text-lg">🧠</span>
+                  </div>
+                  <div>
+                    <h4 className="text-white font-bold text-sm leading-tight mb-1" style={displayFont}>AI/ML Labs</h4>
+                    <p className="text-[11px] text-white/50">LLM, RAG integration, custom models.</p>
+                  </div>
+                </div>
+
+                {/* IAM block */}
+                <div className="h-[178px] rounded-3xl bg-[#0A1628] border border-[#E85D04]/22 p-6 flex flex-col justify-between shadow-lg relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+                  <span className="absolute inset-x-0 top-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(90deg, transparent, #E85D04, transparent)" }} />
+                  <div className="w-10 h-10 rounded-xl bg-white/08 border border-white/12 flex items-center justify-center">
+                    <span className="text-lg">🔒</span>
+                  </div>
+                  <div>
+                    <h4 className="text-white font-bold text-sm leading-tight mb-1" style={displayFont}>IAM & Security</h4>
+                    <p className="text-[11px] text-white/45">Zero-Trust systems setup.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column */}
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+              <motion.div variants={fadeUp} className="mb-5">
+                <span className="eyebrow-tag">
+                  <span className="dot" />
+                  Why Choose Us
+                </span>
+              </motion.div>
+              <motion.h2
+                variants={fadeUp}
+                className="text-4xl lg:text-5xl font-black text-[#0A1628] mb-8 leading-[1.05] tracking-tight"
+                style={displayFont}
+              >
+                Your Trusted B2B<br />
+                <span className="gradient-text">Tech Partner</span>
+              </motion.h2>
+
+              <motion.div variants={stagger} className="space-y-5">
+                {[
+                  { title: "Expert Tech Engineers", desc: "Professional squads with deep expertise in offshore development, cloud architecture, and compliance standards.", icon: Globe },
+                  { title: "Fast & Reliable Time-to-Market", desc: "Time zone alignment, agile communication, and established delivery frameworks to build software quickly.", icon: Brain },
+                  { title: "Quality Delivery Standards", desc: "Comprehensive quality assurance, test automation, and security-first coding practices in every sprint.", icon: Shield },
+                  { title: "Cost Transparency & Flexibility", desc: "Fixed-price, T&M, or dedicated team options with no hidden fees or legal complications.", icon: CheckCircle },
+                ].map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div key={index} variants={fadeUp} className="flex items-start gap-4 group">
+                      <div
+                        className="w-12 h-12 rounded-2xl border border-[#E85D04]/15 flex items-center justify-center flex-shrink-0 bg-white transition-all duration-300 group-hover:bg-[#FFF4EC] group-hover:border-[#E85D04]/35 group-hover:shadow-[0_4px_16px_rgba(232,93,4,0.12)]"
+                        style={{ boxShadow: "0 2px 8px rgba(15,23,42,0.06)" }}
+                      >
+                        <Icon className="w-5 h-5 text-[#E85D04]" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-[#0A1628] text-base mb-1 group-hover:text-[#E85D04] transition-colors" style={displayFont}>{item.title}</h4>
+                        <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+
+              <motion.div variants={fadeUp} className="mt-8">
+                <Link href="/about" className="inline-flex items-center gap-2 text-[#E85D04] font-bold text-sm hover:gap-3 transition-all duration-200">
+                  Learn more about us <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SPECIALTY SECTION ───────────────────────────────────────────── */}
+      <section
+        className="relative section-py overflow-hidden"
+        style={{
+          backgroundColor: "#F8FAFC",
+          backgroundImage: "radial-gradient(circle, rgba(15,23,42,0.08) 1.5px, transparent 1.5px)",
+          backgroundSize: "26px 26px",
+        }}
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] blur-[100px]"
+          style={{ background: "rgba(232,93,4,0.04)" }}
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Section Header */}
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+            className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16"
+          >
+            <span className="eyebrow-tag mb-5">
+              <span className="dot" />
+              Our Specialty
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-black text-[#0A1628] leading-[1.05] tracking-tight"
+              style={displayFont}
+            >
+              Enterprise Tech<br />
+              <span className="gradient-text">Competencies</span>
+            </h2>
+            <p className="mt-4 text-base text-gray-500 leading-relaxed max-w-2xl">
+              Four key practice areas designed to accelerate modern business digital systems.
+            </p>
+          </motion.div>
+
+          {/* Specialty Grid */}
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {[
+              { title: "Offshore IT Services", desc: "Strategic engineering squads headquartered out of Hyderabad to augment global capacity.", slug: "offshore-it-services", icon: Globe, gradient: "from-[#0A1628] to-[#132238]" },
+              { title: "Software Development", desc: "End-to-end custom application development, architecture consulting, and product builds.", slug: "software-development", icon: Code2, gradient: "from-[#E85D04] to-[#FF802B]" },
+              { title: "AI / ML Integration", desc: "Implementing custom machine learning pipelines, LLM fine-tuning, and document AI.", slug: "ai-ml-services", icon: Brain, gradient: "from-[#1D314D] to-[#132238]" },
+              { title: "IAM & Cybersecurity", desc: "Okta integration, directory configuration, Zero Trust policies, and compliance implementation.", slug: "iam-cybersecurity", icon: Shield, gradient: "from-[#0A1628] to-[#E85D04]" },
+            ].map((spec) => {
+              const Icon = spec.icon;
+              return (
+                <motion.div key={spec.slug} variants={fadeUp}>
+                  <div
+                    className="group relative flex flex-col bg-white rounded-2xl overflow-hidden h-full transition-all duration-350 hover:-translate-y-2 hover:shadow-[0_24px_56px_rgba(15,23,42,0.14),_0_4px_16px_rgba(232,93,4,0.06)]"
+                    style={{ border: "1px solid rgba(15,23,42,0.08)", boxShadow: "0 2px 12px rgba(15,23,42,0.06)" }}
+                  >
+                    {/* Top accent line */}
+                    <span
+                      className="absolute inset-x-0 top-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+                      style={{ background: "linear-gradient(90deg, transparent, #E85D04, transparent)" }}
+                    />
+                    {/* Gradient banner */}
+                    <div className={`h-36 bg-gradient-to-br ${spec.gradient} relative overflow-hidden flex items-center justify-center flex-shrink-0`}>
+                      <div aria-hidden className="absolute inset-0 opacity-12" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px)", backgroundSize: "18px 18px" }} />
+                      <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, transparent 70%)" }} />
+                    </div>
+                    {/* Content */}
+                    <div className="p-6 pt-0 relative flex-1 flex flex-col">
+                      <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto -translate-y-1/2 flex-shrink-0 shadow-[0_4px_20px_rgba(15,23,42,0.12)]" style={{ border: "1px solid rgba(15,23,42,0.07)" }}>
+                        <Icon className="w-6 h-6 text-[#E85D04]" />
+                      </div>
+                      <div className="text-center flex-1 flex flex-col justify-between -mt-4">
+                        <div>
+                          <h3 className="font-bold text-[#0A1628] text-base mb-2 group-hover:text-[#E85D04] transition-colors leading-tight" style={displayFont}>
+                            {spec.title}
+                          </h3>
+                          <p className="text-xs text-gray-500 leading-relaxed mb-5">{spec.desc}</p>
+                        </div>
+                        <Link
+                          href={`/services/${spec.slug}`}
+                          className="inline-flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-full text-[#E85D04] font-bold text-xs hover:bg-[#FFF4EC] hover:shadow-[0_2px_8px_rgba(232,93,4,0.12)] transition-all duration-200"
+                          style={{ border: "1px solid rgba(232,93,4,0.25)" }}
+                        >
+                          Explore specialty →
+                        </Link>
+                      </div>
+                    </div>
+                    {/* Bottom accent */}
+                    <span className="absolute inset-x-0 bottom-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "#E85D04" }} />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+
+          <div className="text-center mt-12">
+            <Link href="/services" className="glow-btn">
+              View All 12 Service Lines <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── HOW WE WORK ──────────────────────────────────────────── */}
+      <section
+        className="relative section-py overflow-hidden"
+        style={{ backgroundColor: "#0A1628" }}
+      >
+        {/* Dot grid */}
+        <div aria-hidden className="pointer-events-none absolute inset-0" style={{ backgroundImage: "radial-gradient(circle, rgba(232,93,4,0.12) 1.5px, transparent 1.5px)", backgroundSize: "30px 30px" }} />
+        {/* Center glow */}
+        <div aria-hidden className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] rounded-full blur-[100px] opacity-15" style={{ background: "radial-gradient(circle, rgba(232,93,4,0.35) 0%, transparent 70%)" }} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+            className="text-center mb-14"
+          >
+            <span className="eyebrow-tag eyebrow-tag-dark mb-5 inline-flex">
+              <span className="dot" />
+              Our Process
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-black text-white leading-[1.05] tracking-tight mt-4" style={displayFont}>
+              How We <span className="gradient-text">Engage</span>
+            </h2>
+            <p className="text-white/45 mt-4 max-w-2xl mx-auto text-base">A clear, structured process from first conversation to delivery — so you always know what to expect.</p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative"
+          >
+            {/* Connector line desktop */}
+            <div className="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(232,93,4,0.3) 20%, rgba(232,93,4,0.3) 80%, transparent)" }} />
+            {[
+              {
+                step: "01",
+                title: "Discovery Call",
+                desc: "We understand your challenge, team structure, and delivery timeline in a 30-minute no-obligation call.",
+                icon: "🔍",
+              },
+              {
+                step: "02",
+                title: "Solution Design",
+                desc: "Our team architects the right engagement model — Fixed Price, T&M, or Dedicated Squad — and shares a detailed proposal.",
+                icon: "📐",
+              },
+              {
+                step: "03",
+                title: "Team Onboarding",
+                desc: "Engineers are onboarded in 2 weeks or less. We plug directly into your Jira, Slack, and GitHub workflows.",
+                icon: "🚀",
+              },
+              {
+                step: "04",
+                title: "Delivery & Growth",
+                desc: "Transparent sprint delivery with monthly reporting. Scale up, down, or pivot based on your evolving needs.",
+                icon: "📈",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                className="group relative rounded-2xl p-7 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1"
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(232,93,4,0.35)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
+                }}
+              >
+                <span className="absolute inset-x-0 top-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(90deg, transparent, #E85D04, transparent)" }} />
+                {/* Step number badge */}
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-black text-white flex-shrink-0" style={{ background: "linear-gradient(135deg, #E85D04, #FF802B)", boxShadow: "0 4px 12px rgba(232,93,4,0.35)" }}>
+                    {item.step}
+                  </div>
+                  <span className="text-2xl">{item.icon}</span>
+                </div>
+                <h3 className="font-bold text-white text-lg" style={displayFont}>{item.title}</h3>
+                <p className="text-sm text-white/45 leading-relaxed flex-1">{item.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-12"
+          >
+            <Link href="/contact" className="glow-btn">
+              Start a Conversation <ArrowRight className="w-5 h-5" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── INDUSTRIES ─────────────────────────────────────────── */}
+      <section
+        className="relative section-py overflow-hidden"
+        style={{
+          backgroundColor: "#ffffff",
+          backgroundImage: "radial-gradient(circle, rgba(232,93,4,0.05) 1.5px, transparent 1.5px)",
+          backgroundSize: "28px 28px",
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+            className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12"
+          >
+            <div>
+              <span className="eyebrow-tag mb-5 inline-flex">
+                <span className="dot" />
+                Industries We Serve
+              </span>
+              <h2
+                className="text-4xl font-black text-[#0A1628] leading-tight tracking-tight mt-4"
+                style={displayFont}
+              >
+                Built for Your Industry
+              </h2>
+            </div>
+            <Link href="/industries" className="flex items-center gap-2 text-[#E85D04] font-bold text-sm hover:gap-3 transition-all duration-200 whitespace-nowrap">
+              All industries <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+          >
+            {[
+              { name: "BFSI / Fintech", icon: "🏦", desc: "Compliance-first engineering", href: "/industries" },
+              { name: "Healthcare", icon: "🏥", desc: "HIPAA-ready systems", href: "/industries" },
+              { name: "Technology / SaaS", icon: "💻", desc: "Product engineering", href: "/industries" },
+              { name: "Retail", icon: "🛒", desc: "Commerce platforms", href: "/industries" },
+              { name: "Legal", icon: "⚖️", desc: "Document AI & automation", href: "/industries" },
+              { name: "Manufacturing", icon: "🏭", desc: "ERP integration & ops", href: "/industries" },
+            ].map((ind, i) => (
+              <motion.div key={i} variants={fadeUp}>
+                <Link
+                  href={ind.href}
+                  className="group flex flex-col items-center text-center p-5 rounded-2xl bg-white border border-gray-100 transition-all duration-250 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(232,93,4,0.10)] hover:border-[#E85D04]/30"
+                  style={{ boxShadow: "0 2px 8px rgba(15,23,42,0.06)" }}
+                >
+                  <span className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300 block">{ind.icon}</span>
+                  <span className="font-bold text-[#0A1628] group-hover:text-[#E85D04] transition-colors text-sm leading-tight block mb-1">{ind.name}</span>
+                  <span className="text-[11px] text-gray-400 leading-snug">{ind.desc}</span>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── TRUST SIGNAL STRIP ────────────────────────────────────── */}
+      <section className="relative overflow-hidden py-10 border-t border-gray-100">
+        <div aria-hidden className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[100px] blur-[60px]" style={{ background: "rgba(232,93,4,0.03)" }} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-xs font-bold uppercase tracking-[0.20em] text-gray-300 mb-8">Trusted by teams across</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+            {[
+              { flag: "🇺🇸", label: "United States" },
+              { flag: "🇬🇧", label: "United Kingdom" },
+              { flag: "🇮🇳", label: "India" },
+            ].map(({ flag, label }) => (
+              <div key={label} className="flex items-center gap-2.5">
+                <span className="text-2xl">{flag}</span>
+                <span className="text-sm font-semibold text-gray-500">{label}</span>
+              </div>
+            ))}
+            <div className="w-px h-6 bg-gray-200 hidden md:block" />
+            {[
+              { icon: "🔒", label: "HIPAA Aware" },
+              { icon: "☁️", label: "Cloud-Native" },
+              { icon: "🤖", label: "AI-Powered" },
+              { icon: "⚡", label: "Agile Delivery" },
+            ].map(({ icon, label }) => (
+              <div key={label} className="flex items-center gap-1.5">
+                <span>{icon}</span>
+                <span className="text-sm font-semibold text-gray-400">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CASE STUDIES ────────────────────────────────────────────────── */}
+      <section
+        className="relative section-py overflow-hidden"
+        style={{
+          backgroundColor: "#F8FAFC",
+          backgroundImage: "radial-gradient(circle, rgba(15,23,42,0.08) 1.5px, transparent 1.5px)",
+          backgroundSize: "26px 26px",
+        }}
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[250px] blur-[100px]"
+          style={{ background: "rgba(232,93,4,0.035)" }}
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+            className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-12"
+          >
+            <div>
+              <span className="eyebrow-tag mb-4 inline-flex">
+                <span className="dot" />
+                Case Studies
+              </span>
+              <h2
+                className="text-4xl font-black text-[#0A1628] mt-2 tracking-tight"
+                style={displayFont}
+              >
+                Real Customer Outcomes
+              </h2>
+            </div>
+            <Link
+              href="/case-studies"
+              className="flex items-center gap-2 text-[#E85D04] font-bold whitespace-nowrap hover:gap-3 transition-all duration-200 text-sm"
+            >
+              All case studies <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            {featuredCases.map((cs) => (
+              <motion.div key={cs.slug} variants={fadeUp}>
+                <Link
+                  href={`/case-studies/${cs.slug}`}
+                  className="group relative flex flex-col bg-white rounded-2xl overflow-hidden h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_24px_56px_rgba(15,23,42,0.14)]"
+                  style={{ border: "1px solid rgba(15,23,42,0.08)", boxShadow: "0 2px 12px rgba(15,23,42,0.06)" }}
+                >
+                  {/* Top accent line */}
+                  <span
+                    className="absolute inset-x-0 top-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: `linear-gradient(90deg, transparent, ${cs.color}, transparent)` }}
+                  />
+                  {/* Color bar with outcome badge overlay */}
+                  <div className="relative h-2 w-full" style={{ background: `linear-gradient(90deg, ${cs.color}, ${cs.color}aa)` }}>
+                    {/* Outcome badge */}
+                    {cs.stats[0] && (
+                      <div
+                        className="absolute -bottom-4 right-4 flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-black shadow-md"
+                        style={{ background: cs.color, color: "#fff", boxShadow: `0 4px 12px ${cs.color}55` }}
+                      >
+                        <TrendingUp className="w-3 h-3" />
+                        {cs.stats[0].value} {cs.stats[0].label}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-7 pt-8 flex flex-col flex-1">
+                    {/* Meta */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="text-lg">{cs.flag}</span>
+                      <span className="px-2.5 py-1 rounded-full text-xs font-bold" style={{ background: cs.color + "18", color: cs.color }}>
+                        {cs.industry}
+                      </span>
+                    </div>
+                    {/* Stats row */}
+                    <div className="flex gap-5 mb-4 pb-4 border-b border-gray-100">
+                      {cs.stats.slice(0, 2).map((stat, i) => (
+                        <div key={i}>
+                          <p className="text-2xl font-black" style={{ color: cs.color, ...displayFont }}>{stat.value}</p>
+                          <p className="text-[11px] text-gray-400 mt-0.5">{stat.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <h3 className="font-bold text-[#0A1628] text-lg leading-tight mb-2 group-hover:text-[#E85D04] transition-colors" style={displayFont}>
+                      {cs.headline}
+                    </h3>
+                    <p className="text-sm text-gray-500 line-clamp-2 flex-1">{cs.subheadline}</p>
+                    <div className="flex items-center gap-1 mt-5 text-sm font-bold group-hover:gap-2 transition-all duration-200" style={{ color: cs.color }}>
+                      Read case study <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                  {/* Bottom accent */}
+                  <span className="absolute inset-x-0 bottom-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: cs.color }} />
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── TESTIMONIALS ────────────────────────────────────────────────── */}
+      <section className="relative section-py overflow-hidden section-line-dark border-t border-white/5">
+        {/* Ambient orbs */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div
+            className="absolute inset-y-0 left-0 w-[500px] h-[350px] rounded-full blur-[120px] opacity-20"
+            style={{ background: "radial-gradient(circle, rgba(232,93,4,0.25) 0%, transparent 70%)", top: "50%", transform: "translateY(-50%)" }}
+          />
+          <div
+            className="absolute inset-y-0 right-0 w-[500px] h-[350px] rounded-full blur-[120px] opacity-15"
+            style={{ background: "radial-gradient(circle, rgba(255,128,43,0.20) 0%, transparent 70%)", top: "50%", transform: "translateY(-50%)" }}
+          />
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] blur-[100px] opacity-08"
+            style={{ background: "rgba(232,93,4,0.3)" }}
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+            className="flex flex-col items-center text-center max-w-3xl mx-auto mb-14"
+          >
+            <span className="eyebrow-tag eyebrow-tag-dark mb-5">
+              <span className="dot" />
+              Testimonials
+            </span>
+            <h2
+              className="text-4xl sm:text-5xl font-black text-white leading-[1.05] tracking-tight"
+              style={displayFont}
+            >
+              What Clients Say<br />
+              <span className="gradient-text">About Us</span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            {testimonials.map((t) => (
+              <motion.div
+                key={t.id}
+                variants={fadeUp}
+                className="group relative flex flex-col bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_24px_56px_rgba(0,0,0,0.30)]"
+                style={{ border: "1px solid rgba(255,255,255,0.10)", boxShadow: "0 2px 20px rgba(0,0,0,0.20)" }}
+              >
+                <span
+                  className="absolute inset-x-0 top-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: "linear-gradient(90deg, transparent, #E85D04, transparent)" }}
+                />
+                <div className="p-7 flex flex-col flex-1 justify-between">
+                  <div>
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-[#E85D04] text-[#E85D04]" />
+                      ))}
+                    </div>
+                    <span className="text-5xl text-[#E85D04] font-serif leading-none opacity-20 block mb-2">"</span>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                      {t.quote}
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between border-t border-gray-100 pt-4 mt-auto">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-black text-white flex-shrink-0 shadow-md"
+                        style={{ background: t.color }}
+                      >
+                        {t.client[0]}
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-[#0A1628]">{t.client}</p>
+                        <p className="text-[10px] text-gray-400">{t.flag} {t.geography} · {t.industry}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <span className="absolute inset-x-0 bottom-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "#E85D04" }} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── CTA BANNER ──────────────────────────────────────────────────── */}
+      <section
+        className="relative py-20 overflow-hidden border-t border-white/5"
+        style={{ backgroundColor: "#070D19" }}
+      >
+        {/* Line grid */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        {/* Left orange orb */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 left-0 w-[500px] h-[300px] rounded-full blur-[120px] opacity-25"
+          style={{ background: "radial-gradient(circle, rgba(232,93,4,0.25) 0%, transparent 70%)", top: "50%", transform: "translateY(-50%)" }}
+        />
+        {/* Right subtle orb */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 right-0 w-[500px] h-[300px] rounded-full blur-[120px] opacity-15"
+          style={{ background: "radial-gradient(circle, rgba(255,128,43,0.20) 0%, transparent 70%)", top: "50%", transform: "translateY(-50%)" }}
+        />
+        {/* Top gradient border line */}
+        <div className="absolute inset-x-0 top-0 h-[1px]" style={{ background: "linear-gradient(90deg, transparent, rgba(232,93,4,0.4), transparent)" }} />
+
+        <div className="relative z-10 mx-auto max-w-[1280px] px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+            <div className="max-w-xl">
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-white/40 block mb-3">
+                Technology Solutions, Anytime
+              </span>
+              <h3
+                className="text-3xl md:text-4xl font-black text-white leading-[1.08] tracking-tight"
+                style={displayFont}
+              >
+                Get Premium IT Services &amp; Offshore Engineering.
+              </h3>
+            </div>
+            <div className="flex items-center gap-4 flex-shrink-0">
+              <Link href="/contact" className="glow-btn">
+                Request a Proposal
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link href="/case-studies" className="glow-btn glow-btn-ghost">
+                See Results
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

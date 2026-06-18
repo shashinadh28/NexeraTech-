@@ -1,0 +1,373 @@
+export interface Service {
+  slug: string;
+  title: string;
+  shortTitle: string;
+  tagline: string;
+  description: string;
+  icon: string;
+  color: string;
+  features: string[];
+  useCases: string[];
+  industries: string[];
+  relatedSlugs: string[];
+  heroStat: { value: string; label: string };
+}
+
+export const services: Service[] = [
+  {
+    slug: "offshore-it-services",
+    title: "Offshore & Onshore IT Services",
+    shortTitle: "Offshore IT Services",
+    tagline: "Senior talent, zero timezone friction",
+    description:
+      "Our flagship offering. We provide dedicated offshore development teams and onshore engagement models for clients across the US and UK. Whether you need a single senior engineer embedded in your team or a fully managed offshore squad of 10+, we build the right model around your delivery needs. Our Hyderabad delivery center operates across IST, EST, and GMT time zones to ensure real-time collaboration.",
+    icon: "Globe",
+    color: "#E85D04",
+    features: [
+      "Dedicated offshore engineering squads (2–20+ engineers)",
+      "Onshore engagement managers for US/UK clients",
+      "IST, EST & GMT timezone coverage",
+      "Agile/Scrum embedded workflows",
+      "Full Jira, Slack & GitHub integration",
+      "Dedicated team model — your engineers, not shared resources",
+      "2-week onboarding & discovery sprint",
+      "Transparent monthly reporting",
+    ],
+    useCases: [
+      "Scale engineering capacity without long US/UK hiring timelines",
+      "Supplement an existing team for a product sprint",
+      "Build a full offshore engineering function from scratch",
+      "Reduce engineering costs by 35–50% vs. local hiring",
+    ],
+    industries: ["BFSI / Fintech", "Healthcare", "Technology / SaaS", "Retail"],
+    relatedSlugs: ["software-development", "staff-augmentation", "managed-it"],
+    heroStat: { value: "40%", label: "avg. cost savings vs. US hiring" },
+  },
+  {
+    slug: "software-development",
+    title: "Software Development",
+    shortTitle: "Software Development",
+    tagline: "End-to-end product engineering that ships",
+    description:
+      "End-to-end product engineering — from discovery and architecture to build, QA, and post-launch support. We work with modern stacks including React, Next.js, Node.js, Python, and cloud-native architectures. We have delivered web platforms, mobile applications, SaaS products, internal enterprise tools, and API integrations for clients across BFSI, Healthcare, Retail, and Technology sectors.",
+    icon: "Code2",
+    color: "#E85D04",
+    features: [
+      "Full-stack web & mobile development",
+      "API design and third-party integrations",
+      "Cloud-native architecture (AWS, Azure, GCP)",
+      "SaaS product engineering",
+      "Legacy system modernization",
+      "React, Next.js, Node.js, Python, PostgreSQL",
+      "CI/CD pipeline setup and DevOps",
+      "Post-launch support and maintenance",
+    ],
+    useCases: [
+      "Build a new SaaS product from MVP to production",
+      "Modernize a legacy enterprise application",
+      "Integrate EHR/ERP systems via API",
+      "Deliver a compliant healthcare or fintech platform",
+    ],
+    industries: ["BFSI / Fintech", "Healthcare", "Technology / SaaS", "Legal"],
+    relatedSlugs: ["offshore-it-services", "ai-ml-services", "qa-testing"],
+    heroStat: { value: "4", label: "major product releases per client avg." },
+  },
+  {
+    slug: "ai-ml-services",
+    title: "AI / ML Services",
+    shortTitle: "AI / ML Services",
+    tagline: "From AI curiosity to AI execution",
+    description:
+      "We help businesses move from AI curiosity to AI execution. Our AI practice covers LLM integration using OpenAI, Anthropic Claude, and Google Gemini; Retrieval-Augmented Generation (RAG) systems; custom ML model development for classification, prediction, and anomaly detection; data engineering and pipeline design; and Generative AI applications for document intelligence, workflow automation, and intelligent chat interfaces.",
+    icon: "Brain",
+    color: "#E85D04",
+    features: [
+      "LLM integration (OpenAI, Anthropic Claude, Google Gemini)",
+      "Retrieval-Augmented Generation (RAG) systems",
+      "Custom ML model development",
+      "AI document classification and extraction",
+      "Predictive analytics and anomaly detection",
+      "Data engineering and pipeline design",
+      "Generative AI workflow automation",
+      "Model fine-tuning and retraining programs",
+    ],
+    useCases: [
+      "Automate document review and classification for legal teams",
+      "Build AI-powered customer support interfaces",
+      "Deploy fraud detection models for fintech",
+      "Create intelligent data pipelines for analytics",
+    ],
+    industries: ["Legal", "BFSI / Fintech", "Healthcare", "Technology / SaaS"],
+    relatedSlugs: ["software-development", "cloud-services", "iam-cybersecurity"],
+    heroStat: { value: "94%", label: "classification accuracy achieved" },
+  },
+  {
+    slug: "iam-cybersecurity",
+    title: "IAM & Cybersecurity",
+    shortTitle: "IAM & Cybersecurity",
+    tagline: "Zero Trust identity for regulated industries",
+    description:
+      "Identity and Access Management is one of Nexeratech's highest-demand service lines. We implement and manage enterprise IAM platforms including Okta, Microsoft Azure AD, and AWS IAM; deploy Zero Trust Architecture to replace legacy VPN models; manage Privileged Access Management using CyberArk and BeyondTrust; and conduct IAM audits aligned to SOC 2, ISO 27001, HIPAA, and GDPR compliance frameworks.",
+    icon: "Shield",
+    color: "#E85D04",
+    features: [
+      "Okta implementation, migration & managed services",
+      "Microsoft Azure AD / Entra ID",
+      "AWS IAM configuration and policy management",
+      "Zero Trust Architecture deployment",
+      "Privileged Access Management (CyberArk, BeyondTrust)",
+      "SSO & MFA rollout across enterprise applications",
+      "IAM audits aligned to SOC 2, ISO 27001, HIPAA, GDPR",
+      "Access lifecycle management and provisioning",
+    ],
+    useCases: [
+      "Emergency Okta stabilization before a regulatory audit",
+      "MFA enforcement across 400+ enterprise users",
+      "Zero Trust migration from legacy VPN",
+      "Identity compliance review for HIPAA or SOC 2",
+    ],
+    industries: ["BFSI / Fintech", "Healthcare", "Legal", "Technology / SaaS"],
+    relatedSlugs: ["cloud-services", "software-development", "managed-it"],
+    heroStat: { value: "21 days", label: "avg. enterprise Okta rollout time" },
+  },
+  {
+    slug: "payroll-eor",
+    title: "Payroll & Employer of Record (EOR)",
+    shortTitle: "Payroll & EOR",
+    tagline: "Compliant workforce operations, fully managed",
+    description:
+      "For US and UK companies operating in India — or Indian companies managing global payroll — we provide end-to-end payroll processing, statutory compliance, Employer of Record services, and HR operations support. We handle everything from monthly salary disbursement and TDS filings to new hire onboarding and termination processing, giving clients a compliant, fully managed workforce solution without entity setup overhead.",
+    icon: "Banknote",
+    color: "#0A1628",
+    features: [
+      "End-to-end monthly payroll processing",
+      "PF, ESI, TDS filing and statutory compliance",
+      "Employer of Record (EOR) for India operations",
+      "Payslip generation and distribution",
+      "New hire onboarding and offboarding",
+      "Multi-state payroll across India",
+      "EPFO notice response and compliance remediation",
+      "HR operations support",
+    ],
+    useCases: [
+      "US/UK company hiring employees in India without entity setup",
+      "Multi-state Indian manufacturer managing complex payroll",
+      "Compliance remediation after EPFO or TDS notice",
+      "Outsourcing payroll to reduce HR team workload by 80%+",
+    ],
+    industries: ["Manufacturing", "Technology / SaaS", "BFSI / Fintech", "Retail"],
+    relatedSlugs: ["staff-augmentation", "offshore-it-services", "recruitment-rpo"],
+    heroStat: { value: "Zero", label: "payroll errors in 8 months" },
+  },
+  {
+    slug: "staff-augmentation",
+    title: "Staff Augmentation",
+    shortTitle: "Staff Augmentation",
+    tagline: "The right engineer, in your team, this week",
+    description:
+      "When you need to scale fast without the overhead of full-team hiring, Nexeratech's staff augmentation service places pre-vetted senior engineers, QA specialists, DevOps engineers, and data professionals directly into your existing team. Our talent operates under your management structure, using your tools, aligned to your sprint cadence.",
+    icon: "Users",
+    color: "#E85D04",
+    features: [
+      "Pre-vetted senior engineers (5–15+ years experience)",
+      "2–4 week placement turnaround",
+      "Roles: Full-Stack, Backend, Frontend, QA, DevOps, Data",
+      "Embedded in client tooling (Jira, Slack, GitHub)",
+      "Flexible engagement length (project-based or ongoing)",
+      "Transparent CVs and interview-first process",
+      "No-notice replacement guarantee",
+      "IST, EST, GMT time zone flexibility",
+    ],
+    useCases: [
+      "Fill a critical senior engineer vacancy while hiring full-time",
+      "Scale a team for a product launch sprint",
+      "Access specialized skills (ML, Okta, FHIR) not available locally",
+      "Reduce per-engineer cost vs. local contract rates",
+    ],
+    industries: ["Technology / SaaS", "BFSI / Fintech", "Healthcare", "Retail"],
+    relatedSlugs: ["offshore-it-services", "recruitment-rpo", "software-development"],
+    heroStat: { value: "30 days", label: "avg. first engineer placed" },
+  },
+  {
+    slug: "cloud-services",
+    title: "Cloud Services",
+    shortTitle: "Cloud Services",
+    tagline: "Architecture that scales with your ambition",
+    description:
+      "Nexeratech's cloud practice delivers infrastructure architecture, cloud migration, and managed cloud operations across AWS, Azure, and GCP. From serverless-first designs to containerized microservices, we help clients build resilient, cost-optimized cloud environments — with security and compliance baked in from day one.",
+    icon: "Cloud",
+    color: "#0A1628",
+    features: [
+      "AWS, Azure, GCP architecture and deployment",
+      "Cloud migration (lift-and-shift, re-platform, re-architect)",
+      "Serverless architecture (Lambda, API Gateway, DynamoDB)",
+      "Kubernetes and containerization (EKS, AKS)",
+      "Infrastructure as Code (Terraform, CloudFormation)",
+      "Cost optimization and FinOps",
+      "Cloud security and compliance (SOC 2, HIPAA)",
+      "Disaster recovery and business continuity",
+    ],
+    useCases: [
+      "Migrate on-premise systems to AWS or Azure",
+      "Build a HIPAA-compliant cloud environment",
+      "Optimize cloud spend for a growing SaaS product",
+      "Deploy a serverless API for scale-on-demand workloads",
+    ],
+    industries: ["Healthcare", "BFSI / Fintech", "Technology / SaaS", "Retail"],
+    relatedSlugs: ["software-development", "iam-cybersecurity", "managed-it"],
+    heroStat: { value: "99.9%", label: "uptime SLA target" },
+  },
+  {
+    slug: "managed-it",
+    title: "Managed IT",
+    shortTitle: "Managed IT",
+    tagline: "Your IT, fully managed, always on",
+    description:
+      "Nexeratech's Managed IT service provides proactive monitoring, helpdesk support, patch management, and IT operations for businesses that want to focus on their core work, not their infrastructure. We act as a virtual IT department or supplement your existing team with 24/7 coverage.",
+    icon: "Monitor",
+    color: "#E85D04",
+    features: [
+      "24/7 infrastructure monitoring and alerting",
+      "Helpdesk and end-user support",
+      "Patch and vulnerability management",
+      "Backup and disaster recovery management",
+      "Vendor management and licensing",
+      "IT procurement and asset management",
+      "SLA-backed response times",
+      "Monthly IT health reports",
+    ],
+    useCases: [
+      "SMB without a dedicated internal IT team",
+      "Supplement an existing IT team with overnight monitoring",
+      "Manage a distributed multi-office IT environment",
+      "Ensure 99.9% uptime for business-critical systems",
+    ],
+    industries: ["Manufacturing", "Retail", "BFSI / Fintech", "Legal"],
+    relatedSlugs: ["cloud-services", "offshore-it-services", "iam-cybersecurity"],
+    heroStat: { value: "< 4hrs", label: "avg. incident response time" },
+  },
+  {
+    slug: "qa-testing",
+    title: "QA & Testing",
+    shortTitle: "QA & Testing",
+    tagline: "Ship with confidence, not hope",
+    description:
+      "Quality assurance is not a checkbox — it's a delivery discipline. Nexeratech's QA practice provides manual testing, automated test suite development, performance testing, and security testing for web and mobile applications. Our QA engineers embed into your development cycle from sprint one, not sprint ten.",
+    icon: "CheckCircle",
+    color: "#E85D04",
+    features: [
+      "Manual and automated testing (Selenium, Cypress, Playwright)",
+      "API testing (Postman, REST Assured)",
+      "Performance and load testing (JMeter, k6)",
+      "Mobile testing (iOS and Android)",
+      "Security and penetration testing",
+      "Test strategy and framework design",
+      "CI/CD pipeline QA integration",
+      "Defect management and reporting",
+    ],
+    useCases: [
+      "Reduce QA cycle time by 35%+ with automation",
+      "Validate a HIPAA-compliant healthcare platform before launch",
+      "Build a regression suite for a legacy application",
+      "Performance test a platform before a high-traffic launch",
+    ],
+    industries: ["Technology / SaaS", "Healthcare", "BFSI / Fintech", "Retail"],
+    relatedSlugs: ["software-development", "offshore-it-services", "cloud-services"],
+    heroStat: { value: "35%", label: "avg. QA cycle time reduction" },
+  },
+  {
+    slug: "recruitment-rpo",
+    title: "Recruitment (RPO)",
+    shortTitle: "Recruitment (RPO)",
+    tagline: "The right hire, faster, for less",
+    description:
+      "Nexeratech's Recruitment Process Outsourcing (RPO) service gives companies access to a dedicated talent acquisition function without the overhead of an internal TA team. We manage the full recruitment lifecycle — from job profiling to offer — for technology, operations, and specialist roles across India, the US, and the UK.",
+    icon: "UserCheck",
+    color: "#E85D04",
+    features: [
+      "Full-lifecycle recruitment management",
+      "Technology, operations, and specialist roles",
+      "India, US, and UK talent markets",
+      "ATS management and candidate pipeline reporting",
+      "Employer branding and JD optimization",
+      "Interview scheduling and coordination",
+      "Offer management and onboarding support",
+      "Retained and contingency engagement models",
+    ],
+    useCases: [
+      "Build an engineering team in India without a local HR function",
+      "Hire 10+ roles in 90 days for a product scale-up",
+      "Replace an underperforming internal recruiter",
+      "Access specialized tech talent (AI, IAM, cloud engineers)",
+    ],
+    industries: ["Technology / SaaS", "BFSI / Fintech", "Healthcare", "Manufacturing"],
+    relatedSlugs: ["staff-augmentation", "payroll-eor", "offshore-it-services"],
+    heroStat: { value: "90 days", label: "to place 10+ specialist roles" },
+  },
+  {
+    slug: "finance-accounting-outsourcing",
+    title: "Finance & Accounting Outsourcing",
+    shortTitle: "Finance & Accounting",
+    tagline: "Accurate books. Compliant filing. Always.",
+    description:
+      "Nexeratech's Finance and Accounting Outsourcing (FAO) service gives businesses a fully managed accounting function — from bookkeeping and accounts payable/receivable to monthly MIS reporting, GST filing, and annual statutory compliance. We serve SMBs, startups, and growing mid-market companies across India and for India-operations of US/UK companies.",
+    icon: "BarChart3",
+    color: "#0A1628",
+    features: [
+      "Bookkeeping and accounts payable/receivable",
+      "Monthly MIS and P&L reporting",
+      "GST filing and compliance (GSTR-1, GSTR-3B)",
+      "TDS calculation and filing",
+      "Income tax return preparation",
+      "Statutory audit support",
+      "Cash flow management and forecasting",
+      "India-operations finance support for US/UK companies",
+    ],
+    useCases: [
+      "US company managing India entity finances remotely",
+      "Startup replacing a part-time bookkeeper with a full-service team",
+      "GST compliance clean-up for a growing SMB",
+      "Pre-audit finance function review and remediation",
+    ],
+    industries: ["BFSI / Fintech", "Manufacturing", "Retail", "Technology / SaaS"],
+    relatedSlugs: ["payroll-eor", "recruitment-rpo", "offshore-it-services"],
+    heroStat: { value: "100%", label: "statutory filing accuracy" },
+  },
+  {
+    slug: "digital-transformation",
+    title: "Digital Transformation",
+    shortTitle: "Digital Transformation",
+    tagline: "Legacy to leading-edge, without the disruption",
+    description:
+      "Digital transformation is not a project — it's a journey. Nexeratech's digital transformation practice helps established businesses modernize their technology stack, automate manual processes, integrate disconnected systems, and build the data foundations for AI adoption. We deliver pragmatic transformation roadmaps grounded in real delivery experience.",
+    icon: "Zap",
+    color: "#E85D04",
+    features: [
+      "Digital maturity assessment and transformation roadmap",
+      "Legacy system modernization and re-platforming",
+      "Process automation (RPA, API integration)",
+      "Data architecture and analytics foundations",
+      "AI readiness assessment and implementation",
+      "ERP and CRM integration",
+      "Change management and adoption support",
+      "Ongoing innovation advisory",
+    ],
+    useCases: [
+      "Manufacturer moving from ERP + spreadsheets to unified digital ops",
+      "Financial services firm adopting AI for compliance automation",
+      "Healthcare provider digitalizing patient records and workflows",
+      "Retail business building a unified commerce platform",
+    ],
+    industries: ["Manufacturing", "BFSI / Fintech", "Healthcare", "Retail"],
+    relatedSlugs: ["ai-ml-services", "software-development", "cloud-services"],
+    heroStat: { value: "12", label: "service lines for end-to-end delivery" },
+  },
+];
+
+export function getServiceBySlug(slug: string): Service | undefined {
+  return services.find((s) => s.slug === slug);
+}
+
+export function getRelatedServices(slugs: string[]): Service[] {
+  return services.filter((s) => slugs.includes(s.slug));
+}
