@@ -54,7 +54,7 @@ export const ourWorkItems: OurWorkItem[] = [
     client: "FindMeBoard Platform",
     year: "2024",
     placeholderBg: "from-purple-600/20 via-indigo-600/20 to-blue-500/20",
-    image: "/our-work/webp-format-images/AI-driven RegTech monitoring Nasdaq and the NYSE trading.webp",
+    image: "/our-work/FindMeBoardcloud-native, AI-driven contractor marketplace.webp",
     summary: "FindMeBoard is a digital marketplace where homeowners can find vetted local contractors across diverse trades, such as plumbing, electrical, HVAC, and handyman work. NexeraTech helped bring the company’s core product to life, turning it from an ambitious plan into a cloud-native, AI-enabled minimum viable product (MVP).",
     overview: "FindMeBoard came to us with a sprawling vision: more than 200 documented features, a highly complex matching engine, and requirements that kept shifting past the original scope. NexeraTech ran a structured, iterative discovery process to bring this scope back to a realistic timeline.",
     challenge: "Over 200 proposed features and a complex matching engine caused scope creep and uncertainty over launch timelines.",
