@@ -787,25 +787,21 @@ export default function HomePage() {
                 step: "01",
                 title: "Discovery Call",
                 desc: "We understand your challenge, team structure, and delivery timeline in a 30-minute no-obligation call.",
-                icon: "🔍",
               },
               {
                 step: "02",
                 title: "Solution Design",
                 desc: "Our team architects the right engagement model — Fixed Price, T&M, or Dedicated Squad — and shares a detailed proposal.",
-                icon: "📐",
               },
               {
                 step: "03",
                 title: "Team Onboarding",
                 desc: "Engineers are onboarded in 2 weeks or less. We plug directly into your Jira, Slack, and GitHub workflows.",
-                icon: "🚀",
               },
               {
                 step: "04",
                 title: "Delivery & Growth",
                 desc: "Transparent sprint delivery with monthly reporting. Scale up, down, or pivot based on your evolving needs.",
-                icon: "📈",
               },
             ].map((item, i) => (
               <motion.div
@@ -828,7 +824,6 @@ export default function HomePage() {
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-black text-white flex-shrink-0" style={{ background: "linear-gradient(135deg, #E85D04, #FF802B)", boxShadow: "0 4px 12px rgba(232,93,4,0.35)" }}>
                     {item.step}
                   </div>
-                  <span className="text-2xl">{item.icon}</span>
                 </div>
                 <h3 className="font-bold text-white text-lg" style={displayFont}>{item.title}</h3>
                 <p className="text-sm text-white/45 leading-relaxed flex-1">{item.desc}</p>
