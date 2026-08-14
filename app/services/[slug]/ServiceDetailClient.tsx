@@ -1096,7 +1096,7 @@ export default function ServiceDetailClient({ service, related }: Props) {
                 className="glow-btn"
                 style={{ background: service.color, boxShadow: `0 8px 28px ${service.color}55` }}
               >
-                Get in Touch <ArrowRight className="w-5 h-5" />
+                Book a free consultation <ArrowRight className="w-5 h-5" />
               </Link>
               <Link href="/services" className="glow-btn glow-btn-ghost">
                 All Services

@@ -1349,22 +1349,25 @@ export default function HomePage() {
         {/* Top gradient border line */}
         <div className="absolute inset-x-0 top-0 h-[1px]" style={{ background: "linear-gradient(90deg, transparent, rgba(232,93,4,0.4), transparent)" }} />
 
-        <div className="relative z-10 mx-auto max-w-[1280px] px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-10">
-            <div className="max-w-xl">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-white/40 block mb-3">
+        <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
+          <div className="flex flex-col items-center justify-center gap-6">
+            <div className="max-w-xl mx-auto">
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#E85D04] block mb-3">
                 Technology Solutions, Anytime
               </span>
               <h3
-                className="text-3xl md:text-4xl font-black text-white leading-[1.08] tracking-tight"
+                className="text-3xl md:text-4xl font-black text-white leading-[1.08] tracking-tight mb-3"
                 style={displayFont}
               >
-                Get Premium IT Services &amp; Offshore Engineering.
+                Get Premium IT Services &amp; Offshore Engineering
               </h3>
+              <p className="text-white/50 text-sm sm:text-base leading-relaxed">
+                Partner with world-class engineers, AI specialists, and UX designers to boost your ROI.
+              </p>
             </div>
-            <div className="flex items-center gap-4 flex-shrink-0">
+            <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/contact" className="glow-btn">
-                Request a Proposal
+                Book a free consultation
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href="/case-studies" className="glow-btn glow-btn-ghost">

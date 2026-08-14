@@ -220,7 +220,7 @@ export default function IndustriesClient() {
           <h2 className="text-4xl font-bold text-white mb-4 mt-4">Work in One of These Industries?</h2>
           <p className="text-white/60 text-lg mb-8">Tell us about your challenge — we&apos;ll match you with the right team and service line.</p>
           <Link href="/contact" className="glow-btn">
-            Get in Touch <ArrowRight className="w-5 h-5" />
+            Book a free consultation <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </section>

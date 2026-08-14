@@ -610,7 +610,7 @@ export default function AboutPage() {
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4 justify-center">
               <Link href="/contact" className="glow-btn">
-                Get in Touch <ArrowRight className="w-5 h-5" />
+                Book a free consultation <ArrowRight className="w-5 h-5" />
               </Link>
               <Link href="/case-studies" className="glow-btn glow-btn-ghost">
                 View Case Studies

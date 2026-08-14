@@ -142,7 +142,7 @@ export default function CaseStudiesClient() {
           <h2 className="text-4xl font-bold text-white mb-4 mt-4">Want to Be Our Next Success Story?</h2>
           <p className="text-white/60 text-lg mb-8">Let&apos;s discuss how we can deliver real outcomes for your business.</p>
           <Link href="/contact" className="glow-btn">
-            Start a Conversation <ArrowRight className="w-5 h-5" />
+            Book a free consultation <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </section>

@@ -179,7 +179,7 @@ export default function CaseStudyDetailClient({ caseStudy: cs, related }: Props)
           <h2 className="text-4xl font-bold text-white mb-4">Facing a Similar Challenge?</h2>
           <p className="text-white/80 text-lg mb-8">Let&apos;s talk about how NexeraTech can deliver similar results for your business.</p>
           <Link href="/contact" className="inline-flex items-center gap-2 px-10 py-4 bg-white font-bold rounded-xl hover:bg-gray-50 transition-all duration-200 hover:scale-105" style={{ color: cs.color }}>
-            Get in Touch <ArrowRight className="w-5 h-5" />
+            Book a free consultation <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </section>

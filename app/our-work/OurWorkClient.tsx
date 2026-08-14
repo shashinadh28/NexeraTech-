@@ -239,84 +239,369 @@ export default function OurWorkClient() {
       {/* ─── Hero ─────────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
-        className="relative overflow-hidden bg-[#0A1628] text-white pt-36 pb-24 border-b border-white/[0.07]"
+        className="relative overflow-hidden bg-white text-[#0A1628] pt-28 pb-0 border-b border-[#E8EDF2]"
       >
-        {/* Dot grid */}
+        {/* Subtle dot grid background */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          className="pointer-events-none absolute inset-0 opacity-[0.035]"
           style={{
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,1) 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(circle, rgba(10,22,40,1) 1px, transparent 1px)",
             backgroundSize: "28px 28px",
           }}
         />
-        <div aria-hidden className="absolute top-0 left-0 right-0 h-px bg-white/10" />
-        <div aria-hidden className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
+        {/* Soft blue radial glow top-right */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-32 -right-32 w-[560px] h-[560px] rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(99,155,255,0.10) 0%, transparent 70%)",
+          }}
+        />
+
+        {/* ── Floating geometric shapes ── */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+
+          {/* Large circle — top-left */}
+          <motion.div
+            className="absolute rounded-full border-2 border-[#E85D04]/20"
+            style={{ width: 140, height: 140, top: "8%", left: "4%" }}
+            animate={{
+              y: [0, -22, 0, 14, 0],
+              scale: [1, 1.06, 1, 0.94, 1],
+              opacity: [0.35, 0.55, 0.35, 0.55, 0.35],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          {/* Small filled circle — bottom-left */}
+          <motion.div
+            className="absolute rounded-full bg-[#E85D04]/10"
+            style={{ width: 60, height: 60, bottom: "22%", left: "10%" }}
+            animate={{
+              y: [0, 18, 0, -12, 0],
+              x: [0, 10, 0, -8, 0],
+              scale: [1, 1.15, 1, 0.88, 1],
+              opacity: [0.3, 0.5, 0.3, 0.5, 0.3],
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+          />
+
+          {/* Medium circle outline — mid-right */}
+          <motion.div
+            className="absolute rounded-full border border-[#6366F1]/25"
+            style={{ width: 90, height: 90, top: "55%", right: "6%" }}
+            animate={{
+              y: [0, -16, 0, 20, 0],
+              scale: [1, 0.92, 1, 1.10, 1],
+              opacity: [0.25, 0.45, 0.25, 0.45, 0.25],
+            }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          />
+
+          {/* Tiny dot circle — upper-right */}
+          <motion.div
+            className="absolute rounded-full bg-[#10B981]/20"
+            style={{ width: 28, height: 28, top: "12%", right: "30%" }}
+            animate={{
+              y: [0, 12, 0, -10, 0],
+              scale: [1, 1.3, 1, 0.75, 1],
+              opacity: [0.4, 0.7, 0.4, 0.7, 0.4],
+            }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          />
+
+          {/* Rectangle — top-center-right */}
+          <motion.div
+            className="absolute rounded-lg border border-[#E85D04]/15 bg-[#E85D04]/[0.04]"
+            style={{ width: 80, height: 50, top: "6%", left: "40%" }}
+            animate={{
+              rotate: [0, 8, 0, -8, 0],
+              y: [0, -14, 0, 10, 0],
+              opacity: [0.3, 0.5, 0.3, 0.5, 0.3],
+            }}
+            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+          />
+
+          {/* Tall rectangle — bottom-right */}
+          <motion.div
+            className="absolute rounded-md border border-[#6366F1]/20 bg-[#6366F1]/[0.04]"
+            style={{ width: 48, height: 100, bottom: "15%", right: "18%" }}
+            animate={{
+              rotate: [0, -6, 0, 6, 0],
+              y: [0, 16, 0, -10, 0],
+              opacity: [0.2, 0.4, 0.2, 0.4, 0.2],
+            }}
+            transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+          />
+
+          {/* Small square — mid-left */}
+          <motion.div
+            className="absolute rounded border border-[#A855F7]/20 bg-[#A855F7]/[0.05]"
+            style={{ width: 36, height: 36, top: "48%", left: "7%" }}
+            animate={{
+              rotate: [0, 45, 90, 135, 180, 225, 270, 315, 360],
+              scale: [1, 1.1, 1, 0.9, 1],
+              opacity: [0.3, 0.5, 0.3, 0.5, 0.3],
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          />
+
+          {/* Hexagon — upper-left area (CSS clip-path) */}
+          <motion.div
+            className="absolute bg-[#E85D04]/10"
+            style={{
+              width: 70, height: 70,
+              top: "30%", left: "18%",
+              clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+            }}
+            animate={{
+              rotate: [0, 30, 0, -30, 0],
+              y: [0, -18, 0, 12, 0],
+              scale: [1, 1.08, 1, 0.93, 1],
+              opacity: [0.25, 0.45, 0.25, 0.45, 0.25],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+          />
+
+          {/* Hexagon outline — bottom-center */}
+          <motion.div
+            className="absolute border-2 border-[#10B981]/20"
+            style={{
+              width: 55, height: 55,
+              bottom: "10%", left: "45%",
+              clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+            }}
+            animate={{
+              rotate: [0, -20, 0, 20, 0],
+              y: [0, 10, 0, -14, 0],
+              opacity: [0.2, 0.4, 0.2, 0.4, 0.2],
+            }}
+            transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+          />
+
+          {/* Triangle — top-right area */}
+          <motion.div
+            className="absolute bg-[#6366F1]/12"
+            style={{
+              width: 0, height: 0,
+              borderLeft: "32px solid transparent",
+              borderRight: "32px solid transparent",
+              borderBottom: "56px solid rgba(99,102,241,0.12)",
+              top: "18%", right: "22%",
+              background: "transparent",
+            }}
+            animate={{
+              rotate: [0, 15, 0, -15, 0],
+              y: [0, -20, 0, 14, 0],
+              opacity: [0.4, 0.7, 0.4, 0.7, 0.4],
+            }}
+            transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+          />
+
+          {/* Triangle — bottom-left */}
+          <motion.div
+            style={{
+              width: 0, height: 0,
+              position: "absolute",
+              borderLeft: "22px solid transparent",
+              borderRight: "22px solid transparent",
+              borderBottom: "38px solid rgba(232,93,4,0.15)",
+              bottom: "28%", left: "28%",
+              background: "transparent",
+            }}
+            animate={{
+              rotate: [0, -20, 0, 20, 0],
+              y: [0, 14, 0, -10, 0],
+              scale: [1, 1.15, 1, 0.85, 1],
+              opacity: [0.35, 0.6, 0.35, 0.6, 0.35],
+            }}
+            transition={{ duration: 9.5, repeat: Infinity, ease: "easeInOut", delay: 2.4 }}
+          />
+
+          {/* Large hexagon — far right edge */}
+          <motion.div
+            className="absolute bg-[#A855F7]/[0.07]"
+            style={{
+              width: 110, height: 110,
+              top: "35%", right: "2%",
+              clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+            }}
+            animate={{
+              rotate: [0, 40, 0, -40, 0],
+              scale: [1, 1.05, 1, 0.96, 1],
+              opacity: [0.2, 0.38, 0.2, 0.38, 0.2],
+            }}
+            transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          />
+        </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+          {/* ── Two-column: left text / right image ── */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center min-h-[420px]">
 
-            {/* Eyebrow */}
+            {/* LEFT — text block */}
+            <div className="flex flex-col justify-center pb-12 lg:pb-16">
+              {/* Eyebrow badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full bg-[#FFF4EC] border border-[#FDDCBC] text-[#E85D04] text-[11px] font-bold uppercase tracking-widest mb-6"
+              >
+                <Sparkles className="w-3 h-3" />
+                Featured Portfolio &amp; Case Studies
+              </motion.div>
+
+              {/* Headline */}
+              <motion.h1
+                initial={{ opacity: 0, y: 28 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="text-5xl sm:text-6xl font-black tracking-tight leading-[1.05] mb-4"
+                style={displayFont}
+              >
+                Our{" "}
+                <span className="text-[#E85D04]">Work</span>
+              </motion.h1>
+
+              {/* Orange underline accent */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={heroInView ? { scaleX: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="h-[3px] w-16 bg-[#E85D04] rounded-full mb-6 origin-left"
+              />
+
+              {/* Subhead */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-[15px] text-[#4B5563] leading-relaxed max-w-md mb-8"
+              >
+                Explore how we partner with world-class startups, Fortune 500 leaders, and innovators to
+                engineer scalable platforms, intuitive UX, and custom AI solutions.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-wrap items-center gap-4"
+              >
+                <a
+                  href="#our-work-grid"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#E85D04] text-white font-bold text-sm hover:bg-[#d05202] transition-all duration-200 shadow-[0_4px_20px_rgba(232,93,4,0.30)] group"
+                >
+                  Explore Our Work
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a
+                  href="#our-work-grid"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#D1D5DB] text-[#374151] font-semibold text-sm hover:border-[#9CA3AF] hover:bg-[#F9FAFB] transition-all duration-200"
+                >
+                  <svg className="w-4 h-4 text-[#6B7280]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  View Case Studies
+                </a>
+              </motion.div>
+            </div>
+
+            {/* RIGHT — hero image */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.08] border border-white/[0.12] text-[#FF802B] text-xs font-bold uppercase tracking-widest mb-8"
+              initial={{ opacity: 0, x: 40, scale: 0.97 }}
+              animate={heroInView ? { opacity: 1, x: 0, scale: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="relative flex items-end justify-center lg:justify-end"
             >
-              <Sparkles className="w-3.5 h-3.5" />
-              Featured Portfolio &amp; Case Studies
-            </motion.div>
-
-            {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 28 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-6 leading-[1.05]"
-              style={displayFont}
-            >
-              Our{" "}
-              <span className="relative inline-block">
-                Work
-                <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-[#E85D04] rounded-full" />
-              </span>
-            </motion.h1>
-
-            {/* Subhead */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg text-white/60 leading-relaxed max-w-2xl"
-            >
-              Explore how we partner with world-class startups, Fortune 500 leaders, and innovators to
-              engineer scalable platforms, intuitive UX, and custom AI solutions.
-            </motion.p>
-
-            {/* Stats — centered */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.32 }}
-              className="flex flex-wrap justify-center gap-12 mt-10"
-            >
-              {[
-                { value: "38+", label: "Case Studies" },
-                { value: "500+", label: "Engineers" },
-                { value: "15+", label: "Years Experience" },
-              ].map((stat) => (
-                <div key={stat.label} className="flex flex-col items-center">
-                  <span className="text-3xl font-black text-white" style={displayFont}>{stat.value}</span>
-                  <span className="text-xs font-medium text-white/40 uppercase tracking-wider mt-0.5">{stat.label}</span>
-                </div>
-              ))}
+              <Image
+                src="/our-work/our-work-homeimage.png"
+                alt="Our Work — AI Powered Analytics Dashboard"
+                width={680}
+                height={460}
+                className="object-contain w-full max-w-[600px] drop-shadow-2xl"
+                priority
+              />
             </motion.div>
           </div>
+
+          {/* ── Stats bar ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="border-t border-[#E8EDF2] py-6 grid grid-cols-2 sm:grid-cols-4 gap-6"
+          >
+            {[
+              {
+                value: "38+",
+                label: "Case Studies",
+                sublabel: "Delivered successfully",
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  </svg>
+                ),
+                iconBg: "bg-[#FFF4EC]",
+                iconColor: "text-[#E85D04]",
+              },
+              {
+                value: "500+",
+                label: "Engineers",
+                sublabel: "Skilled professionals",
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0" />
+                  </svg>
+                ),
+                iconBg: "bg-[#EEF2FF]",
+                iconColor: "text-[#6366F1]",
+              },
+              {
+                value: "15+",
+                label: "Years Experience",
+                sublabel: "In delivering excellence",
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                ),
+                iconBg: "bg-[#ECFDF5]",
+                iconColor: "text-[#10B981]",
+              },
+              {
+                value: "100%",
+                label: "Client Satisfaction",
+                sublabel: "Trusted by global brands",
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                  </svg>
+                ),
+                iconBg: "bg-[#FAF5FF]",
+                iconColor: "text-[#A855F7]",
+              },
+            ].map((stat) => (
+              <div key={stat.label} className="flex items-center gap-4">
+                <div className={`w-10 h-10 rounded-xl ${stat.iconBg} ${stat.iconColor} flex items-center justify-center shrink-0`}>
+                  {stat.icon}
+                </div>
+                <div>
+                  <div className="text-xl font-black text-[#0A1628]" style={displayFont}>{stat.value}</div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#0A1628]">{stat.label}</div>
+                  <div className="text-[11px] text-[#9CA3AF]">{stat.sublabel}</div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* ─── Filter & Grid ────────────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div id="our-work-grid" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
         {/* Filter Pills */}
         <AnimatedSection>
@@ -412,7 +697,7 @@ export default function OurWorkClient() {
 
         {/* Bottom CTA strip */}
         <AnimatedSection className="mt-24">
-          <div className="bg-[#0A1628] rounded-3xl p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+          <div className="bg-[#0A1628] rounded-3xl p-10 sm:p-14 flex flex-col items-center justify-center text-center relative overflow-hidden">
             <div
               aria-hidden
               className="absolute inset-0 opacity-[0.05]"
@@ -423,19 +708,16 @@ export default function OurWorkClient() {
             />
             <div aria-hidden className="absolute top-0 left-0 right-0 h-[3px] bg-[#E85D04]" />
 
-            <div className="relative z-10">
+            <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
               <p className="text-xs font-bold uppercase tracking-widest text-[#E85D04] mb-3">
                 Start a Project
               </p>
-              <h3 className="text-3xl font-black text-white leading-tight" style={displayFont}>
-                Ready to build something<br className="hidden sm:block" /> extraordinary?
+              <h3 className="text-3xl sm:text-4xl font-black text-white leading-tight mb-3" style={displayFont}>
+                Ready to build something extraordinary?
               </h3>
-              <p className="text-white/50 mt-3 max-w-lg text-sm leading-relaxed">
+              <p className="text-white/50 max-w-xl text-sm sm:text-base leading-relaxed mb-8">
                 Partner with world-class engineers, AI specialists, and UX designers to boost your engineering ROI and product outcomes.
               </p>
-            </div>
-
-            <div className="relative z-10 shrink-0">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#E85D04] text-white font-bold text-sm hover:bg-[#d05202] transition-colors group shadow-[0_4px_20px_rgba(232,93,4,0.35)]"
