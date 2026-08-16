@@ -127,7 +127,7 @@ export default function ContactClient() {
                     Contact Information
                   </span>
                   <h2 className="text-3xl font-black text-white mb-4 leading-tight" style={displayFont}>
-                    Sanath Nagar, Hyderabad &<br />Delivery Center
+                    Kukatpally, Hyderabad &<br />Delivery Center
                   </h2>
                   <p className="text-white/55 text-sm leading-relaxed mb-8">
                     Operating across global time zones (IST, EST, GMT) to ensure seamless delivery and proactive support for every client.
@@ -136,7 +136,7 @@ export default function ContactClient() {
                   {/* Contact details */}
                   <div className="space-y-5">
                     {[
-                      { icon: MapPin, label: "Our Office", value: "B2, Touch River Classic", sub: "Street no 5, Czech colony, Sanath Nagar, Hyderabad 500018, Telangana" },
+                      { icon: MapPin, label: "Our Office", value: "My cooffice: 2nd floor, NSL centrum mall", sub: "KPHB, Phase 5, Kukatpally, Hyderabad, Telangana 500085" },
                       { icon: Mail, label: "Email Address", value: "hr@nexeratechinc.com", href: "mailto:hr@nexeratechinc.com" },
                       { icon: Phone, label: "Phone Number", value: "+91 97018 67111", href: "tel:+919701867111" },
                       { icon: Clock, label: "SLA Response", value: "Within 1 business day", sub: "For all B2B inquiries" },
@@ -334,8 +334,8 @@ export default function ContactClient() {
           >
             <MapPin className="w-8 h-8 text-[#E85D04]" />
           </div>
-          <p className="font-black text-white text-lg" style={displayFont}>Sanath Nagar, Hyderabad 500018</p>
-          <p className="text-white/40 text-sm mt-1">B2, Touch River Classic, Street no 5, Czech colony, Telangana</p>
+          <p className="font-black text-white text-lg" style={displayFont}>Kukatpally, Hyderabad 500085</p>
+          <p className="text-white/40 text-sm mt-1">My cooffice: 2nd floor, NSL centrum mall, KPHB, Phase 5, Telangana 500085</p>
         </div>
       </section>
     </div>

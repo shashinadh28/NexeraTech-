@@ -87,7 +87,7 @@ export default function Footer() {
               <div className="flex flex-col gap-3 text-sm text-white/40">
                 <div className="flex items-start gap-2.5">
                   <MapPin className="w-4 h-4 text-[#E85D04] flex-shrink-0 mt-0.5" />
-                  <span>B2, Touch River Classic, Street no 5, Czech colony, Sanath Nagar, Hyderabad 500018, Telangana</span>
+                  <span>My cooffice: 2nd floor, NSL centrum mall, KPHB, Phase 5, Kukatpally, Hyderabad, Telangana 500085</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Mail className="w-4 h-4 text-[#E85D04] flex-shrink-0" />
